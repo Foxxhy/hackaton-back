@@ -1,6 +1,7 @@
 import express from "express";
 import { generateReport } from "../controllers/reportController.js";
 import { getDOM, getDOMByURL } from "../controllers/domController.js";
+import { getTestDOM } from "../controllers/testController.js";
 
 const router = express.Router();
 
@@ -14,8 +15,9 @@ router.get("/", (req, res) => {
 
 router.post("/report", generateReport);
 
-router.get("/dom", getDOMByURL);
+// router.get("/dom", getDOMByURL);
 router.post("/dom", getDOM);
+router.post("/test/dom", getTestDOM);
 
 router.get("/test", (req, res) => {
   res.json({
