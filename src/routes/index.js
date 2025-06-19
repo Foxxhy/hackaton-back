@@ -1,4 +1,6 @@
 import express from "express";
+import { generateReport } from "../controllers/reportController.js";
+import { getDOM, getDOMByURL } from "../controllers/domController.js";
 
 const router = express.Router();
 
@@ -10,20 +12,22 @@ router.get("/", (req, res) => {
   });
 });
 
+router.post("/report", generateReport);
+
+router.get("/dom", getDOMByURL);
+router.post("/dom", getDOM);
+
 router.get("/test", (req, res) => {
   res.json({
-    message: "Route de test fonctionnelle",
-    data: {
-      user: "API Hackaton",
-      version: "1.0.0",
-    },
+    message: "Test",
+    status: "OK",
   });
 });
 
 router.get("*", (req, res) => {
   res.json({
-    message: "Bienvenue sur l'API Hackaton Backend!",
-    status: "OK",
+    message: "Not found!",
+    status: "404",
   });
 });
 
