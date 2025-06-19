@@ -1,7 +1,13 @@
 import express from "express";
 import { generateReport } from "../controllers/reportController.js";
 import { getDOM, getDOMByURL } from "../controllers/domController.js";
-import { getTestDOM } from "../controllers/testController.js";
+import {
+  getTestDOM,
+  testReadFile,
+  testWriteFile,
+  testMoveFile,
+  testFileOperations,
+} from "../controllers/testController.js";
 
 const router = express.Router();
 
@@ -18,6 +24,10 @@ router.post("/report", generateReport);
 // router.get("/dom", getDOMByURL);
 router.post("/dom", getDOM);
 router.post("/test/dom", getTestDOM);
+router.post("/test/read", testReadFile);
+router.post("/test/write", testWriteFile);
+router.post("/test/move", testMoveFile);
+router.post("/test/file-operations", testFileOperations);
 
 router.get("/test", (req, res) => {
   res.json({
