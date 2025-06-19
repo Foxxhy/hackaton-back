@@ -2,6 +2,7 @@ import { getRenderedDOM } from "../services/dom/playwright.js";
 import { readFileService } from "../services/file/read.js";
 import { writeFileService } from "../services/file/write.js";
 import { moveFileService } from "../services/file/move.js";
+import { serviceDeepseek } from "../services/llm/deepseek.js"; // adapte le chemin
 import { existsSync, mkdirSync } from "fs";
 import path from "path";
 
@@ -235,6 +236,34 @@ Ligne 5: Fin du fichier de test`;
     res.status(500).json({
       success: false,
       message: "Erreur lors du test complet des opérations de fichiers",
+      error: error.message,
+    });
+  }
+};
+
+export const testDeepseek = async (req, res) => {
+  try {
+    const prompt = "Hello how are you?";
+
+    // Appel de ton service Deepseek
+    const report = await serviceDeepseek(prompt);
+
+    res.json({
+      success: true,
+      message: "Rapport généré avec succès via Deepseek",
+      data: {
+        report,
+        source: "DOM",
+      },
+    });
+  } catch (error) {
+    console.error(
+      "❌ Erreur lors de la génération du rapport Deepseek :",
+      error
+    );
+    res.status(500).json({
+      success: false,
+      message: "Erreur lors de la génération du rapport Deepseek",
       error: error.message,
     });
   }

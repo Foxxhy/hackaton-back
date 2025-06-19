@@ -7,6 +7,7 @@ import {
   testWriteFile,
   testMoveFile,
   testFileOperations,
+  testDeepseek,
 } from "../controllers/testController.js";
 
 const router = express.Router();
@@ -23,12 +24,13 @@ router.post("/report", generateReport);
 
 // router.get("/dom", getDOMByURL);
 router.post("/dom", getDOM);
+
 router.post("/test/dom", getTestDOM);
 router.post("/test/read", testReadFile);
 router.post("/test/write", testWriteFile);
 router.post("/test/move", testMoveFile);
 router.post("/test/file-operations", testFileOperations);
-
+router.get("/test/deepseek", testDeepseek);
 router.get("/test", (req, res) => {
   res.json({
     message: "Test",

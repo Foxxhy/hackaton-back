@@ -1,4 +1,5 @@
 import { serviceOpenAI } from "../services/llm/openApi.js";
+import { serviceDeepseek } from "../services/llm/deepseek.js"; // adapte le chemin
 
 export const generateReport = async (req, res) => {
   try {
@@ -28,6 +29,7 @@ export const generateReport = async (req, res) => {
 
     // Appel du service LLM
     const report = await serviceOpenAI(prompt);
+    // const report = await serviceDeepseek(prompt);
 
     res.json({
       success: true,
