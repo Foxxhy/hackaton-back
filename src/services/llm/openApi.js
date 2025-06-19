@@ -1,4 +1,4 @@
-const apiKey = "";
+const apiKey = ""; // Remplace par ta clé OpenAI
 
 const url = "https://api.openai.com/v1/chat/completions";
 const headers = {
